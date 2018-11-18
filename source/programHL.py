@@ -3,7 +3,7 @@ import numpy as np
 import numpy.random as rd
 from nn18_ex2_load import load_isolet
 import matplotlib.pyplot as plt
-
+from functions import normalizeDataNN
 
 
 
@@ -22,6 +22,11 @@ def createC(array):
     return res;
 Ca=createC(C);
 Ca_Test=createC(C_test);
+Xa=normalizeDataNN(Xa);
+Ca=normalizeDataNN(Ca);
+X_test=normalizeDataNN(X_test);
+Ca_Test=normalizeDataNN(Ca_Test);
+
 # Give the dimension of the data and chose the number of hidden layer
 n_in = 300
 n_out = 26
@@ -66,7 +71,7 @@ test_acc_list = []
 train_acc_list = []
 
 # Create minibtaches to train faster
-k_batch = 100
+k_batch = 40
 X_batch_list = np.array_split(Xa,k_batch)
 labels_batch_list = np.array_split(Ca,k_batch)
 
