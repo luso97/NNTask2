@@ -70,7 +70,7 @@ k_batch = 100
 X_batch_list = np.array_split(Xa,k_batch)
 labels_batch_list = np.array_split(Ca,k_batch)
 
-for k in range(150):
+for k in range(50):
     # Run gradient steps over each minibatch
     for x_minibatch,labels_minibatch in zip(X_batch_list,labels_batch_list):
         sess.run(train_step, feed_dict={x: x_minibatch, z_:labels_minibatch})
