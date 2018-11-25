@@ -28,6 +28,7 @@
 \usepackage{float}
 \usepackage{enumitem}
 \usepackage{pstricks,pst-plot,pstricks-add}
+\graphicspath{ {graficas/} }
 %\captionsetup[figure]{labelformat=empty}
 \renewcommand{\lstlistingname}{}
 \lstset{
@@ -108,10 +109,84 @@ It might be possible to try different architecture such as RNN or LSTM and get b
 \paragraph{} Our code give the possibility to change easily from a Network containing 1 Hidden Layer to 2 or 3. For this, some line in the definition of this architecture are (or aren't) commented. We just have to comment (or uncomment) those before running and choose the number of perceptron in each layer before running in order to get the architecture we want.
 \\Between all those models, the only constant concerns the number of inputs and outputs, ruled respectively by the task and the data. There are 300 inputs for the first layer (corresponding to the first 300 features from the original data set), and 26 outputs corresponding to all the letter labels from "a" to "z".
 \paragraph{Validation}
-\paragraph{} Using the stochastic gradient descent, 
+\paragraph{}For the validation we produce a random int between 0 and 6228 which is the size of the dataset minus 100 and then we take the 100 first values since that number in the dataset. 
 \paragraph{Early Stopping}
+\paragraph{}For the training of the validation set we have set an early sopping by saving the best state with a Saver object. If the validation accuracy by at least 0.01 100 times the execution stops. For the training with the test set we have restored the state saved in the validation set training and we also haven´t let the accuracy decrease by 0.01 more than 100 times before stopping the program. We have saved the best state with another Saver. 
 \section{Results}
-\paragraph{Choosing the activation function}
+\begin{center}
+\begin{tabular}{||c|c|c|c|c||}
+\hline
+ Learning rate & Hidden layers (units) & Training accuracy & Validation accuracy & Test accuracy  \\ [0.5ex]
+\hline
+\hline
+0.05&1(150)&0.92&0.88&0.748\\
+\hline
+0.25&1(150)&0.96&1.0&0.752\\
+\hline
+0.05&1(300)&0.90&0.95&0.754\\
+\hline
+0.2&1(150)&1.0&0.972&0.76\\
+\hline
+0.05&1(150) 2(75)&0.90&0.95&0.742\\
+\hline
+0.05&1(20) 2(20) 3(5)&0.624&0.62&0.634\\
+\hline
+0.05&1(20) 2 (20)&0.77&0.76&0.692\\
+\hline
+\end{tabular}
+\end{center}
+\paragraph{Graphs}
+Here we show some graphs with the results
+
+\begin{figure}[h]
+\begin{center}
+\includegraphics[scale=0.5]{test-20-20-5-0,05.png}
+\end{center}
+\caption{1(20)2(20)3(5) Validation and training results}
+\end{figure}
+\begin{figure}[h]
+\begin{center}
+\includegraphics[scale=0.5]{testDeverdadlootroesval202050,05.png}
+\end{center}
+\caption{1(20)2(20)3(5) Test set results}
+\end{figure}
+\begin{figure}[h]
+\begin{center}
+\includegraphics[scale=0.5]{20200,05val.png}
+\end{center}
+\caption{1(20)2(20) Validation results}
+\end{figure}
+\begin{figure}[h]
+\begin{center}
+\includegraphics[scale=0.5]{20200,05val.png}
+\end{center}
+\caption{1(20)2(20) test results}
+\end{figure}
+\begin{figure}[h]
+\begin{center}
+\includegraphics[scale=0.5]{15075val.png}
+\end{center}
+\caption{1(150)2(75) validation results}
+\end{figure}
+\begin{figure}[h]
+\begin{center}
+\includegraphics[scale=0.5]{15075test.png}
+\end{center}
+\caption{1(150)2(75) test results}
+\end{figure}
+\begin{figure}[h]
+\begin{center}
+\includegraphics[scale=0.5]{150025.png}
+\end{center}
+\caption{1(150) 0.25 learning rate validation results}
+\end{figure}
+\begin{figure}[h]
+\begin{center}
+\includegraphics[scale=0.5]{150025test.png}
+\end{center}
+\caption{1(150) 0.25 learning rate test results}
+\end{figure}
+
 \paragraph{•}
 
 
